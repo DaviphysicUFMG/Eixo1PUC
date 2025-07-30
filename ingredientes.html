@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Rótulo Fácil</title>
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="./codigo-fonte/ingredientes/ingredientes.css" />
+  <link rel="stylesheet" href="./codigo-fonte/menu/global.css" />
+  <link rel="stylesheet" href="./codigo-fonte/menu/nav.css" />
+
+  <!-- icones -->
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+</head>
+
+<body>
+  <!-- Menu -->
+  <header class="cabecalho">
+      <a href="index.html"><img src="./codigo-fonte/img/Logo1.svg" alt="Rótulo Fácil" class="logo" /></a>
+      <input type="checkbox" id="check" />
+      <label for="check" class="icons">
+          <i class="bx bx-menu" id="menu_icon"></i>
+          <i class="bx bx-x" id="close_icon"></i>
+      </label>
+      <nav class="navigation">
+          <a href="busca_produtos.html" style="--i: 0">Produtos</a>
+          <a href="ingredientes.html" style="--i: 2"><b>Ingredientes</b></a>
+          <a href="meuperfill.html" style="--i: 3">Meu Perfil</a>
+          <a href="ajuda.html" style="--i: 4">Ajuda</a>
+          <a href="login.html" style="--i: 5">Login</a>
+  </nav>
+  </header>
+  <main>
+    <div class="card_ingredientes">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">O que Gosto?</h5>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Ingrediente" id="novoIngredienteGosto">
+            <button class="btn btn-outline-secondary" type="button" id="adicionarIngredienteGosto">Adicionar</button>
+          </div>
+          <ul class="list-group" id="listaIngredientesGosto"></ul>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Não Gosto</h5>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Ingrediente" id="novoIngredienteNaoGosto">
+            <button class="btn btn-outline-secondary" type="button" id="adicionarIngredienteNaoGosto">Adicionar</button>
+          </div>
+          <ul class="list-group" id="listaIngredientesNaoGosto"></ul>
+        </div>
+      </div>
+    </div>
+    <script>
+      const listaGosto = document.getElementById('listaIngredientesGosto');
+      const listaNaoGosto = document.getElementById('listaIngredientesNaoGosto');
+      const novoItemGosto = document.getElementById('novoIngredienteGosto');
+      const novoItemNaoGosto = document.getElementById('novoIngredienteNaoGosto');
+      const btnAdicionarGosto = document.getElementById('adicionarIngredienteGosto');
+      const btnAdicionarNaoGosto = document.getElementById('adicionarIngredienteNaoGosto');
+      
+      // Carregar itens do localStorage ao iniciar a página
+      carregarItens();
+      
+      // Função para adicionar um item à lista
+      function adicionarItem(lista, novoItem) {
+        const item = document.createElement('li');
+        item.classList.add('list-group-item');
+        item.innerHTML = `
+          ${novoItem}
+          <button class="btn btn-danger btn-sm float-end remover-item">Remover</button>
+        `;
+        lista.appendChild(item);
+      
+        // Adicionar evento de clique no botão "Remover"
+        const btnRemover = item.querySelector('.remover-item');
+        btnRemover.addEventListener('click', () => {
+          lista.removeChild(item);
+          salvarItens();
+        });
+      
+        salvarItens();
+      }
+      
+      // Função para salvar os itens no localStorage
+      function salvarItens() {
+        const itensGosto = [];
+        const itensNaoGosto = [];
+
+        listaGosto.querySelectorAll('li').forEach(item => {
+            const textoIngrediente = item.childNodes[0].textContent.trim();
+            itensGosto.push(textoIngrediente);
+        });
+
+        listaNaoGosto.querySelectorAll('li').forEach(item => {
+            const textoIngrediente = item.childNodes[0].textContent.trim();
+            itensNaoGosto.push(textoIngrediente);
+        });
+
+        localStorage.setItem('itensGosto', JSON.stringify(itensGosto));
+        localStorage.setItem('itensNaoGosto', JSON.stringify(itensNaoGosto));
+      }
+      
+      // Função para carregar os itens do localStorage
+      function carregarItens() {
+        const itensGostoSalvos = localStorage.getItem('itensGosto');
+        const itensNaoGostoSalvos = localStorage.getItem('itensNaoGosto');
+      
+        if (itensGostoSalvos) {
+          JSON.parse(itensGostoSalvos).forEach(item => {
+            adicionarItem(listaGosto, item);
+          });
+        }
+      
+        if (itensNaoGostoSalvos) {
+          JSON.parse(itensNaoGostoSalvos).forEach(item => {
+            adicionarItem(listaNaoGosto, item);
+          });
+        }
+      }
+      
+      // Event listeners para adicionar itens
+      btnAdicionarGosto.addEventListener('click', () => {
+        const novoItem = novoItemGosto.value.trim();
+        if (novoItem !== '') {
+          adicionarItem(listaGosto, novoItem);
+          novoItemGosto.value = '';
+        }
+      });
+      
+      btnAdicionarNaoGosto.addEventListener('click', () => {
+        const novoItem = novoItemNaoGosto.value.trim();
+        if (novoItem !== '') {
+          adicionarItem(listaNaoGosto, novoItem);
+          novoItemNaoGosto.value = '';
+        }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  </main>
+  <footer class="rodape">
+    <p>Copyright &#169 2024 Rótulo Fácil | Todos os direitos reservados.</p>
+  </footer>
+</body>
+</html>

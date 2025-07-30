@@ -13,9 +13,6 @@
 
     <!-- Ícones -->
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-    
-    <!-- JS -->
-    <script src="favoritos.js"></script>
   </head>
   
   <body>
@@ -38,37 +35,87 @@
         <a href="../favoritos/favoritos.html" style="--i: 6">favoritos</a>
       </nav>
     </header>
+    
     <main>
-        <section class="container"> 
-          <div class="teste">
-            <h1>Meus Produtos</h1>
-            <h2>Favoritos</h2>
-          </div>
-            <div class="produtos">
-              <div class="produto-container" data-id="1">
-                <img src="https://via.placeholder.com/150?text=Produto+1" alt="Nome do Produto 1" class="produto-imagem">
-                <h3>Nome do Produto 1</h3>
-                <p class="produto-descricao">Descrição do Produto 1</p>
-                <button class="desfavoritar-btn">Desfavoritar</button>
-            </div>
-            <div class="produto-container" data-id="2">
-              <img src="https://via.placeholder.com/150?text=Produto+2" alt="Nome do Produto 2" class="produto-imagem">
-                <h3>Nome do Produto 2</h3>
-                <p class="produto-descricao">Descrição do Produto 2</p>
-                <button class="desfavoritar-btn">Desfavoritar</button>
-            </div>
-            <div class="produto-container" data-id="3">
-              <img src="https://via.placeholder.com/150?text=Produto+3" alt="Nome do Produto 3" class="produto-imagem">
-                <h3>Nome do Produto 3</h3>
-                <p class="produto-descricao">Descrição do Produto 3</p>
-                <button class="desfavoritar-btn">Desfavoritar</button>
-            </div>
-        </section>
+      <section class="container"> 
+        <div class="teste">
+          <h1>Meus Produtos</h1>
+          <h2>Favoritos</h2>
+        </div>
+
+        <!-- Container onde os produtos favoritos serão carregados -->
+        <div id="produtosContainer"></div>
+      </section>
     </main>
 
     <!-- Rodapé -->
     <footer class="rodape">
       <p>Copyright &#169 2024 Rótulo Fácil | Todos os direitos reservados.</p>
     </footer>
+
+    <!-- JS -->
+    <script>
+      // Função para carregar os produtos do localStorage (se existirem)
+      function carregarProdutosFavoritos() {
+          const produtos = JSON.parse(localStorage.getItem('produtosFavoritos'));
+          return produtos ? produtos : [
+              { id: 1, nome: 'Produto 1', imagem: 'https://via.placeholder.com/150?text=Produto+1' },
+              { id: 2, nome: 'Produto 2', imagem: 'https://via.placeholder.com/150?text=Produto+2' },
+              { id: 3, nome: 'Produto 3', imagem: 'https://via.placeholder.com/150?text=Produto+3' },
+              { id: 4, nome: 'Produto 4', imagem: 'https://via.placeholder.com/150?text=Produto+4' },
+              { id: 5, nome: 'Produto 5', imagem: 'https://via.placeholder.com/150?text=Produto+5' },
+          ]; // Produtos padrão caso não haja no localStorage
+      }
+
+      // Array para armazenar os produtos favoritos
+      let produtosFavoritos = carregarProdutosFavoritos();
+
+      // Seleciona o contêiner para os produtos
+      const produtosContainer = document.getElementById('produtosContainer');
+
+      // Função para renderizar os produtos favoritos
+      function renderizarProdutos() {
+          produtosContainer.innerHTML = ''; // Limpa o contêiner antes de renderizar
+
+          produtosFavoritos.forEach(produto => {
+              const produtoContainer = document.createElement('div');
+              produtoContainer.classList.add('produto-container');
+              produtoContainer.setAttribute('data-id', produto.id);
+              produtoContainer.innerHTML = `
+                  <img src="${produto.imagem}" alt="${produto.nome}" class="produto-imagem">
+                  <h3>${produto.nome}</h3>
+                  <button class="desfavoritar-btn">Desfavoritar</button>
+              `;
+              produtosContainer.appendChild(produtoContainer);
+          });
+
+          // Adiciona o evento de desfavoritar aos botões após renderizar
+          document.querySelectorAll('.desfavoritar-btn').forEach(button => {
+              button.addEventListener('click', function() {
+                  const produtoContainer = this.closest('.produto-container');
+                  produtoContainer.classList.add('remover'); // Adiciona a classe para animação
+
+                  setTimeout(() => {
+                      produtoContainer.remove(); // Remove o elemento do DOM após a animação
+                      // Remove o produto do array
+                      const produtoId = parseInt(produtoContainer.getAttribute('data-id'));
+                      const index = produtosFavoritos.findIndex(produto => produto.id === produtoId);
+                      if (index > -1) {
+                          produtosFavoritos.splice(index, 1); // Remove o produto do array
+                          salvarProdutosFavoritos(); // Salva os favoritos atualizados
+                      }
+                  }, 300); // Tempo igual à duração da animação
+              });
+          });
+      }
+
+      // Função para salvar os produtos favoritos no localStorage
+      function salvarProdutosFavoritos() {
+          localStorage.setItem('produtosFavoritos', JSON.stringify(produtosFavoritos));
+      }
+
+      // Renderiza os produtos ao carregar a página
+      renderizarProdutos();
+    </script>
   </body>
 </html>

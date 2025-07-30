@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Rótulo Fácil</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="favoritos.css" />
+    <link rel="stylesheet" href="../menu/global.css" />
+    <link rel="stylesheet" href="../menu/nav.css" />
+
+    <!-- Ícones -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  </head>
+  
+  <body>
+    <!-- Menu -->
+    <header class="cabecalho">
+      <a href="../home/index.html">
+        <img src="../img/Logo1.svg" alt="Rótulo Fácil" class="logo" />
+      </a>
+      <input type="checkbox" id="check" />
+      <label for="check" class="icons">
+        <i class="bx bx-menu" id="menu_icon"></i>
+        <i class="bx bx-x" id="close_icon"></i>
+      </label>
+      <nav class="navigation">
+        <a href="../produtos/busca_produtos.html" style="--i: 0">Produtos</a>
+        <a href="../ingredientes/ingredientes.html" style="--i: 2">Ingredientes</a>
+        <a href="../perfil/perfil.html" style="--i: 3">Meu Perfil</a>
+        <a href="../Ajuda/ajuda.html" style="--i: 4">Ajuda</a>
+        <a href="../login/login.html" style="--i: 5">login</a>
+        <a href="../favoritos/favoritos.html" style="--i: 6">favoritos</a>
+      </nav>
+    </header>
+    
+    <main>
+      <section class="container"> 
+        <div class="teste">
+          <h1>Meus Produtos</h1>
+          <h2>Favoritos</h2>
+        </div>
+
+        <!-- Container onde os produtos favoritos serão carregados -->
+        <div id="produtosContainer"></div>
+      </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="rodape">
+      <p>Copyright &#169 2024 Rótulo Fácil | Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- JS -->
+    <script>
+      // Função para carregar os produtos do localStorage (se existirem)
+      function carregarProdutosFavoritos() {
+          const produtos = JSON.parse(localStorage.getItem('produtosFavoritos'));
+          return produtos ? produtos : [
+              { id: 1, nome: 'Produto 1', imagem: 'https://via.placeholder.com/150?text=Produto+1' },
+              { id: 2, nome: 'Produto 2', imagem: 'https://via.placeholder.com/150?text=Produto+2' },
+              { id: 3, nome: 'Produto 3', imagem: 'https://via.placeholder.com/150?text=Produto+3' },
+              { id: 4, nome: 'Produto 4', imagem: 'https://via.placeholder.com/150?text=Produto+4' },
+              { id: 5, nome: 'Produto 5', imagem: 'https://via.placeholder.com/150?text=Produto+5' },
+          ]; // Produtos padrão caso não haja no localStorage
+      }
+
+      // Array para armazenar os produtos favoritos
+      let produtosFavoritos = carregarProdutosFavoritos();
+
+      // Seleciona o contêiner para os produtos
+      const produtosContainer = document.getElementById('produtosContainer');
+
+      // Função para renderizar os produtos favoritos
+      function renderizarProdutos() {
+          produtosContainer.innerHTML = ''; // Limpa o contêiner antes de renderizar
+
+          produtosFavoritos.forEach(produto => {
+              const produtoContainer = document.createElement('div');
+              produtoContainer.classList.add('produto-container');
+              produtoContainer.setAttribute('data-id', produto.id);
+              produtoContainer.innerHTML = `
+                  <img src="${produto.imagem}" alt="${produto.nome}" class="produto-imagem">
+                  <h3>${produto.nome}</h3>
+                  <button class="desfavoritar-btn">Desfavoritar</button>
+              `;
+              produtosContainer.appendChild(produtoContainer);
+          });
+
+          // Adiciona o evento de desfavoritar aos botões após renderizar
+          document.querySelectorAll('.desfavoritar-btn').forEach(button => {
+              button.addEventListener('click', function() {
+                  const produtoContainer = this.closest('.produto-container');
+                  produtoContainer.classList.add('remover'); // Adiciona a classe para animação
+
+                  setTimeout(() => {
+                      produtoContainer.remove(); // Remove o elemento do DOM após a animação
+                      // Remove o produto do array
+                      const produtoId = parseInt(produtoContainer.getAttribute('data-id'));
+                      const index = produtosFavoritos.findIndex(produto => produto.id === produtoId);
+                      if (index > -1) {
+                          produtosFavoritos.splice(index, 1); // Remove o produto do array
+                          salvarProdutosFavoritos(); // Salva os favoritos atualizados
+                      }
+                  }, 300); // Tempo igual à duração da animação
+              });
+          });
+      }
+
+      // Função para salvar os produtos favoritos no localStorage
+      function salvarProdutosFavoritos() {
+          localStorage.setItem('produtosFavoritos', JSON.stringify(produtosFavoritos));
+      }
+
+      // Renderiza os produtos ao carregar a página
+      renderizarProdutos();
+    </script>
+  </body>
+</html>

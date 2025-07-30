@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="ajuda.css" />
     <link rel="stylesheet" href="../menu/global.css" />
     <link rel="stylesheet" href="../menu/nav.css" />
-
     <!-- ícones -->
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
 </head>
@@ -26,41 +25,42 @@
             <a href="../ingredientes/ingredientes.html" style="--i: 2">Ingredientes</a>
             <a href="../perfil/perfil.html" style="--i: 3">Meu Perfil</a>
             <a href="../Ajuda/ajuda.html" style="--i: 4">Ajuda</a>
-            <a href="../login/login.html" style="--i: 5">login</a>
-            <a href="../favoritos/favoritos.html" style="--i: 6">favoritos</a>
+            <a href="../login/login.html" style="--i: 5">Login</a>
+            <a href="../favoritos/favoritos.html" style="--i: 6">Favoritos</a>
         </nav>
     </header>
-    
 
     <main>
         <section class="container">
             <div class="ajuda-container">
                 <h1 class="titulo-ajuda">Ajuda</h1>
-                <form id="form-ajuda"> <!-- Adicionei a tag form aqui -->
+                <!-- Formulário de ajuda com action mailto -->
+                <form action="mailto:facilrotulo@gmail.com" method="post" enctype="text/plain">
                     <div class="nomeusuario">
                         <p>Nome</p>
                     </div>
                     <div class="NomeCompleto-container container-field">
-                        <input type="text" id="nome" placeholder="Digite seu nome completo">
+                        <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required>
                         <p id="erro-nome" style="color: red; display: none;">Nome inválido! Use apenas letras e espaços.</p>
                     </div>
                     <div class="Email">
                         <p>Email</p>
                     </div>
                     <div class="email1-container container-field">
-                      <input type="text" id="email" placeholder="Digite seu email">
+                        <input type="email" id="email" name="email" placeholder="Digite seu email" required>
                     </div>
                     <div class="mensagem">
                         <p>Mensagem</p>
                     </div>
                     <div class="mensagem1-container container-field">
-                        <textarea id="mensagem" rows="4" placeholder="Digite sua mensagem"></textarea>
+                        <textarea id="mensagem" name="mensagem" rows="4" placeholder="Digite sua mensagem" required></textarea>
                     </div>
                     <div class="resetar">
                         <button type="button" id="limpar">Limpar</button>
                         <button type="submit">Enviar</button>
                     </div>
-                </form> <!-- Fechando a tag form aqui -->
+                </form>
+                <div id="mensagem-sucesso" style="display: none; color: green; margin-top: 10px;"></div>
             </div>
         </section>
     </main>
@@ -69,17 +69,15 @@
         <p>Copyright &#169 2024 Rótulo Fácil | Todos os direitos reservados.</p>
     </footer>
 
-    <script src="ajuda.js"></script>
     <script>
         // Seleciona o botão de limpar e o formulário
         const limparBtn = document.getElementById('limpar');
-        const formAjuda = document.getElementById('form-ajuda');
+        const formAjuda = document.querySelector('form');
     
         // Adiciona um evento de clique ao botão de limpar
         limparBtn.addEventListener('click', function() {
             formAjuda.reset();  // Limpa todos os campos do formulário
         });
     </script>
-    
 </body>
 </html>

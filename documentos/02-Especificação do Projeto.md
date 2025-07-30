@@ -57,22 +57,15 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 #### Requisitos Funcionais
 
-| ID | Descriçao | Prioridade |
-| ---| --------- | ---------- |
-| RF-01 | O site deve permitir ao usuário cadastrar uma conta. | Alta |
-| RF-02 | O site deve permitir ao usuário fazer o login da sua conta. | Alta |
-| RF-03 | O site deve permitir ao usuário fazer o cadastro do produto. | Baixa |
-| RF-04 | O site deve permitir ao usuário disponibilizar informações sobre os ingredientes. | Alta |
-| RF-05 | O site deve permitir buscas por produtos específicos. | Média |
-| RF-06 | O site deve apresentar alertas automáticos para ingredientes nocivos. | Alta |
-| RF-07 | O site deve permitir ao usuário visualizar as informações sobre o produto. | Alta |
-| RF-08 | O site deve exibir a composição química detalhada dos produtos (saber mais). | Média |
-| RF-09 | O site deve fornecer recomendações de produtos alternativos. | Baixa |
-| RF-10 | O site deve permitir ao usuário favoritar ingredientes ou produtos. | Média |
-| RF-11 | O site deve permitir que o usuário informe possíveis alergias e identificar ingredientes prejudiciais. | Baixa |
-| RF-12 | O site deve permitir ao usuário verificar as informações registradas no cadastro na página Perfil, após fazer seu login. | Média |
-| RF-13 | O site deve permitir que o usuário avalie produtos. | Baixa |
-| RF-14 | O site deve permitir que o usuário escaneie o código de barras. | Alta |
+| ID  | Descrição                                                     | Prioridade |
+|------|---------------------------------------------------------------|------------|
+| RF-01 | O site deve permitir ao usuário cadastrar uma conta.          | Alta       |
+| RF-02 | O site deve permitir ao usuário fazer o login da sua conta.   | Alta       |
+| RF-03 | O site deve permitir ao usuário fazer o cadastro do produto.  | Alta      |
+| RF-04 | O site deve permitir buscas por produtos específicos.         | Média      |
+| RF-05 | O site deve permitir ao usuário visualizar as informações sobre o produto. | Alta |
+| RF-06 | O site deve permitir que o usuário verifique as informações registradas no cadastro na página Perfil, após fazer seu login. | Média |
+| RF-07 | O site deve permitir que o usuário requisite auxilio.           | Baixa  |
 
 **Prioridade Alta/Média/Baixa
 

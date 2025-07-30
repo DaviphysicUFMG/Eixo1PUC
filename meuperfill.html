@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meu Perfil</title>
+  <link rel="stylesheet" href="./codigo-fonte/menu/global.css" />
+  <link rel="stylesheet" href="./codigo-fonte/menu/nav.css" />
+  <link rel="stylesheet" href="./codigo-fonte/meu perfill/meuperfill.css">
+
+  <!-- icones -->
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+</head>
+
+<body>
+  <!-- Menu -->
+  <header class="cabecalho">
+      <a href="index.html"><img src="./codigo-fonte/img/Logo1.svg" alt="Rótulo Fácil" class="logo" /></a>
+      <input type="checkbox" id="check" />
+      <label for="check" class="icons">
+          <i class="bx bx-menu" id="menu_icon"></i>
+          <i class="bx bx-x" id="close_icon"></i>
+      </label>
+      <nav class="navigation">
+          <a href="busca_produtos.html" style="--i: 0">Produtos</a>
+          <a href="ingredientes.html" style="--i: 2">Ingredientes</a>
+          <a href="meuperfill.html" style="--i: 3">Meu Perfil</a>
+          <a href="ajuda.html" style="--i: 4">Ajuda</a>
+          <a href="login.html" style="--i: 5">Login</a>
+  </nav>
+  </header>
+  </head>
+<body>
+  <!-- Cabeçalho -->
+  <div class="perfil-container">
+    <!-- Área da foto de perfil -->
+    <div class="foto-perfil" onclick="document.getElementById('input-foto').click()">
+      <input type="file" id="input-foto" accept="image/*" onchange="trocarFotoPerfil(event)" style="display: none;">
+    </div>
+    <!-- Nome do usuário -->
+    <p class="nome-usuario">
+      Nome do Usuário 
+      <!-- Botão para alterar foto -->
+      <span class="alterar-foto" onclick="document.getElementById('input-foto').click()">Alterar foto de perfil</span>
+    </p>
+  </div>
+  
+
+  <!-- Galeria -->
+  <div class="galeria-container">
+    <!-- Formulário para criar post -->
+    <div class="post">
+      <textarea id="mensagem" placeholder="Escreva algo..." rows="3" style="width: 100%;"></textarea>
+      <input type="file" id="imagem-post" accept="image/*">
+      <button onclick="criarPost()">Publicar</button>
+    </div>
+    <!-- Lista de posts -->
+    <div id="posts"></div>
+  </div>
+
+  <script>
+    // Trocar a foto de perfil
+    function trocarFotoPerfil(event) {
+      const foto = document.querySelector('.foto-perfil');
+      const arquivo = event.target.files[0];
+      if (arquivo) {
+        const leitor = new FileReader();
+        leitor.onload = function (e) {
+          foto.style.backgroundImage = `url(${e.target.result})`;
+          foto.style.backgroundSize = 'cover';
+        };
+        leitor.readAsDataURL(arquivo);
+      }
+    }
+
+    // Criar um post
+    function criarPost() {
+      const mensagem = document.getElementById('mensagem').value;
+      const imagem = document.getElementById('imagem-post').files[0];
+      const postsContainer = document.getElementById('posts');
+
+      const postDiv = document.createElement('div');
+      postDiv.classList.add('post');
+
+      // Botão de excluir
+      const excluirBtn = document.createElement('button');
+      excluirBtn.classList.add('excluir');
+      excluirBtn.textContent = 'Excluir';
+      excluirBtn.onclick = () => postDiv.remove();
+
+      postDiv.appendChild(excluirBtn);
+
+      if (imagem) {
+        const img = document.createElement('img');
+        img.src = URL.createObjectURL(imagem);
+        img.style.maxWidth = '100%';
+        img.style.borderRadius = '8px';
+        postDiv.appendChild(img);
+      }
+
+      if (mensagem) {
+        const p = document.createElement('p');
+        p.textContent = mensagem;
+        postDiv.appendChild(p);
+      }
+
+      postsContainer.prepend(postDiv); // Adiciona no topo
+      document.getElementById('mensagem').value = '';
+      document.getElementById('imagem-post').value = '';
+    }
+  </script>
+  <button id="modo-escuro" onclick="alternarModoEscuro()">Modo Escuro</button>
+  <footer class="rodape">
+    <p>Copyright &#169 2024 Rótulo Fácil | Todos os direitos reservados.</p>
+</footer>
+
+  <script src="/codigo-fonte/meu perfill/meuperfill.js"></script>
+</body>
+</html>
+

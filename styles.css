@@ -1,0 +1,126 @@
+/*
+ * Custom CSS
+ */
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+:root {
+  --bs-body-bg: var(--bs-gray-100);
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  background-image: url("cosm02.jpeg"); /* Define a imagem de fundo */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+body {
+  background-color: #1e1e1e;
+}
+
+.menuHome {
+  background-color: #ffff;
+}
+
+.logoImg {
+  margin-left: 0;
+  margin-right: 10rem !important;
+}
+
+.nav-link {
+  color: #2c2c2c !important; /* Cor personalizada para o texto dos links */
+  /* font-size: 1.5rem; */
+}
+
+.nav-link:hover {
+  color: #6d6d6d !important; /* Cor personalizada quando o link é "hovered" */
+}
+
+.custom-btn {
+  background-color: #404040; /* Cor de fundo personalizada */
+  border-color: #404040; /* Cor da borda personalizada */
+  color: white; /* Cor do texto */
+  font-size: 1.5rem;
+}
+
+.custom-btn:hover {
+  background-color: #e1e1e1; /* Cor de fundo no hover */
+  border-color: #e1e1e1; /* Cor da borda no hover */
+  color: #404040;
+  font-size: 1.5rem;
+}
+
+.left-cont {
+  background-color: aliceblue;
+}
+
+.image-container {
+  height: 100%; /* Ocupa toda a altura da coluna */
+  overflow: hidden; /* Esconde partes da imagem que excedem o contêiner */
+}
+
+.image-container img {
+  width: 100%; /* Largura 100% do contêiner */
+  height: 100%; /* Altura 100% do contêiner */
+  object-fit: cover; /* Mantém a proporção da imagem */
+}
+
+.right-cont {
+  height: 100%;
+  background-color: #1e1e1e;
+}
+
+.text-container {
+  display: flex;
+  flex-direction: column; /* Mantém os elementos na vertical */
+  justify-content: center; /* Centraliza o conteúdo verticalmente */
+  align-items: center; /* Centraliza o conteúdo horizontalmente */
+  height: 100%; /* Garante que a altura da coluna seja 100% */
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column; /* Coloca os elementos em coluna */
+  min-height: 100vh; /* Garante que o contêiner ocupe pelo menos 100% da altura da tela */
+}
+.content {
+  flex: 1; /* Faz com que a área de conteúdo cresça e ocupe o espaço restante */
+  display: flex; /* Adiciona flexbox para a área de conteúdo */
+}
+.left-cont {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.7
+  ); /* Altere a cor de fundo, se necessário */
+}
+
+/* html,
+body {
+  height: 100%;
+  margin: 0; 
+} */
+
+@media (max-width: 768px) {
+  /* Ajustes para telas pequenas */
+  .content {
+    flex-direction: column; /* Muda a direção para coluna em telas pequenas */
+  }
+  .left-cont,
+  .right-cont {
+    height: auto; /* Permite que as colunas se ajustem ao conteúdo */
+  }
+}

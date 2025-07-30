@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Produtos</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="./codigo-fonte/produtos/busca_produtos.css" />
+    <link rel="stylesheet" href="./codigo-fonte/menu/global.css" />
+    <link rel="stylesheet" href="./codigo-fonte/menu/nav.css" />
+
+    <!-- icones -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- Menu -->
+    <header class="cabecalho">
+        <a href="index.html"><img src="./codigo-fonte/img/Logo1.svg" alt="Rótulo Fácil" class="logo" /></a>
+        <input type="checkbox" id="check" />
+        <label for="check" class="icons">
+            <i class="bx bx-menu" id="menu_icon"></i>
+            <i class="bx bx-x" id="close_icon"></i>
+        </label>
+        <nav class="navigation">
+            <a href="busca_produtos.html" style="--i: 0"><b>Produtos</b></a>
+            <a href="ingredientes.html" style="--i: 2">Ingredientes</a>
+            <a href="meuperfill.html" style="--i: 3">Meu Perfil</a>
+            <a href="ajuda.html" style="--i: 4">Ajuda</a>
+            <a href="login.html" style="--i: 5">Login</a>
+    </nav>
+    </header>
+    <!-- Busca -->
+    <main class="container mt-4">
+        <h1 class="display-4 fw-bold">Descubra a verdade por trás dos rótulos</h1><br>
+        <div class="input-group mb-3">
+            <input type="text" id="searchInput" class="form-control" placeholder="Digite o nome do produto" />
+            <button class="btn btn-primary" id="searchButton">Buscar</button>
+        </div>
+
+        <div id="results" class="mt-4">
+            <p>Digite o nome de um produto e clique em buscar.</p>
+        </div>
+        <a href="cadastro_produtos.html"><button>Cadastre</button></a>
+    <script>
+        document.getElementById("searchButton").addEventListener("click", () => {
+            const query = document.getElementById("searchInput").value.trim().toLowerCase();
+            const resultsContainer = document.getElementById("results");
+
+            // Limpa resultados anteriores
+            resultsContainer.innerHTML = "";
+
+            // Recupera produtos do LocalStorage
+            const products = JSON.parse(localStorage.getItem("products")) || [];
+
+            // Filtra os produtos pelo nome
+            const filteredProducts = products.filter(product => product.name.toLowerCase().includes(query));
+
+            // Verifica se há resultados
+            if (filteredProducts.length === 0) {
+                resultsContainer.innerHTML = "<p>Nenhum produto encontrado.</p>";
+                return;
+            }
+            // Renderiza resultados
+            filteredProducts.forEach(product => {
+                const productCard = `
+              <div class="card mb-3" style="width: 100%;">
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    <img src="${product.image}" class="img-fluid rounded-start" alt="${product.name}">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title">${product.name}</h5>
+                      <p class="card-text">${product.description}</p>
+                      <h6>Ingredientes:</h6>
+                      <ul>
+                        ${product.ingredients.map(ingredient => `<li>${ingredient}</li>`).join("")}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `;
+                resultsContainer.innerHTML += productCard;
+            });
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+    </main>
+
+    <footer class="rodape">
+        <p>Copyright &#169 2024 Rótulo Fácil | Todos os direitos reservados.</p>
+    </footer>
+</body>
+
+</html>

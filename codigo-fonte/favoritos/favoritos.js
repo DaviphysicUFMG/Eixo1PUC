@@ -1,11 +1,17 @@
+// Função para carregar os produtos do localStorage (se existirem)
+function carregarProdutosFavoritos() {
+    const produtos = JSON.parse(localStorage.getItem('produtosFavoritos'));
+    return produtos ? produtos : [
+        { id: 1, nome: 'Produto 1', imagem: 'https://via.placeholder.com/150?text=Produto+1' },
+        { id: 2, nome: 'Produto 2', imagem: 'https://via.placeholder.com/150?text=Produto+2' },
+        { id: 3, nome: 'Produto 3', imagem: 'https://via.placeholder.com/150?text=Produto+3' },
+        { id: 4, nome: 'Produto 4', imagem: 'https://via.placeholder.com/150?text=Produto+4' },
+        { id: 5, nome: 'Produto 5', imagem: 'https://via.placeholder.com/150?text=Produto+5' },
+    ]; // Produtos padrão caso não haja no localStorage
+}
+
 // Array para armazenar os produtos favoritos
-const produtosFavoritos = [
-    { id: 1, nome: 'Produto 1', imagem: 'https://via.placeholder.com/150?text=Produto+1' },
-    { id: 2, nome: 'Produto 2', imagem: 'https://via.placeholder.com/150?text=Produto+2' },
-    { id: 3, nome: 'Produto 3', imagem: 'https://via.placeholder.com/150?text=Produto+3' },
-    { id: 4, nome: 'Produto 4', imagem: 'https://via.placeholder.com/150?text=Produto+4' },
-    { id: 5, nome: 'Produto 5', imagem: 'https://via.placeholder.com/150?text=Produto+5' },
-];
+let produtosFavoritos = carregarProdutosFavoritos();
 
 // Seleciona o contêiner para os produtos
 const produtosContainer = document.getElementById('produtosContainer');
@@ -39,10 +45,16 @@ function renderizarProdutos() {
                 const index = produtosFavoritos.findIndex(produto => produto.id === produtoId);
                 if (index > -1) {
                     produtosFavoritos.splice(index, 1); // Remove o produto do array
+                    salvarProdutosFavoritos(); // Salva os favoritos atualizados
                 }
             }, 300); // Tempo igual à duração da animação
         });
     });
+}
+
+// Função para salvar os produtos favoritos no localStorage
+function salvarProdutosFavoritos() {
+    localStorage.setItem('produtosFavoritos', JSON.stringify(produtosFavoritos));
 }
 
 // Renderiza os produtos ao carregar a página
@@ -56,6 +68,9 @@ document.getElementById('addProdutoBtn').addEventListener('click', () => {
     if (nome && imagem) {
         const novoProduto = { id: produtosFavoritos.length + 1, nome, imagem };
         produtosFavoritos.push(novoProduto);
+        salvarProdutosFavoritos(); // Salva o novo produto no localStorage
         renderizarProdutos(); // Renderiza a lista atualizada de produtos
+    } else {
+        alert('Por favor, insira o nome e a URL do produto corretamente!');
     }
 });

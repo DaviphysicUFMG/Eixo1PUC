@@ -1,18 +1,42 @@
-// Seleciona o container de ajuda e o botão de ajuda
+console.log('Script carregado!');
+
+// Seleciona os elementos do formulário e outros componentes
 const ajudaContainer = document.querySelector('.ajuda-container');
 const botaoAjuda = document.querySelector('.botao-ajuda');
-
-// Adiciona o evento de clique ao botão de ajuda para mostrar ou esconder o container
-botaoAjuda.addEventListener('click', () => {
-    ajudaContainer.classList.toggle('visible');
-});
-
-// Seleciona os elementos do formulário
+const mensagemSucesso = document.getElementById('mensagem-sucesso');
 const nomeInput = document.querySelector('input[placeholder="Digite seu nome completo"]');
 const erroNome = document.getElementById('erro-nome');
-const limparBtn = document.getElementById('limpar');
+const emailInput = document.querySelector('input[placeholder="Digite seu email"]');
 const mensagemInput = document.getElementById('mensagem');
-const enviarBtn = document.querySelector('button[type="submit"]'); // Seleciona o botão de enviar
+const limparBtn = document.getElementById('limpar');
+const formAjuda = document.getElementById('form-ajuda');
+
+// Função para validar os campos obrigatórios
+function validarFormulario() {
+    let valido = true;
+
+    // Verifica se o nome está preenchido
+    if (nomeInput.value.trim() === '') {
+        erroNome.style.display = 'block';
+        valido = false;
+    } else {
+        erroNome.style.display = 'none';
+    }
+
+    // Verifica se o email está preenchido
+    if (emailInput.value.trim() === '') {
+        valido = false;
+        alert('Por favor, preencha o campo de email!');
+    }
+
+    // Verifica se a mensagem está preenchida
+    if (mensagemInput.value.trim() === '') {
+        valido = false;
+        alert('Por favor, preencha a mensagem!');
+    }
+
+    return valido;
+}
 
 // Valida o campo de nome e remove caracteres inválidos
 nomeInput.addEventListener('input', function() {
@@ -26,24 +50,43 @@ nomeInput.addEventListener('input', function() {
     }
 });
 
-// Função para limpar apenas o campo de mensagem
+// Limpa apenas o campo de mensagem
 limparBtn.addEventListener('click', function() {
-    mensagemInput.value = ''; // Limpa o campo de mensagem
+    mensagemInput.value = '';
 });
 
-// Função para enviar a mensagem e mostrar a confirmação
-enviarBtn.addEventListener('click', function(event) {
-    event.preventDefault(); // Evita que o formulário seja enviado
-    // Aqui você pode adicionar lógica para enviar a mensagem, se necessário.
+// Adiciona o evento de clique ao botão de ajuda para mostrar ou esconder o container
+botaoAjuda.addEventListener('click', () => {
+    ajudaContainer.classList.toggle('visible');
+});
 
-    // Cria um elemento para mostrar a mensagem de sucesso
-    const mensagemSucesso = document.createElement('p');
-    mensagemSucesso.textContent = 'Mensagem enviada com sucesso';
-    mensagemSucesso.style.color = 'green'; // Altera a cor da mensagem para verde
-    mensagemSucesso.style.marginTop = '10px'; // Adiciona uma margem superior
-    ajudaContainer.appendChild(mensagemSucesso); // Adiciona a mensagem ao container de ajuda
+// Previne o envio do formulário e valida antes
+formAjuda.addEventListener('submit', function(event) {
+    event.preventDefault(); // Impede o envio do formulário
 
-    // Limpa os campos do formulário (opcional)
-    nomeInput.value = '';
-    mensagemInput.value = '';
+    // Valida o formulário antes de enviar
+    if (validarFormulario()) {
+        // Cria um objeto com os dados do formulário
+        const dadosFormulario = {
+            from_name: nomeInput.value,
+            from_email: emailInput.value,
+            mensagem: mensagemInput.value
+        };
+
+        // Envia a mensagem para você usando EmailJS
+        emailjs.send('service_wzxl1mrl', 'template_ijlgfxx', dadosFormulario)
+            .then(function(response) {
+                console.log('Mensagem enviada com sucesso', response);
+                mensagemSucesso.textContent = 'Mensagem enviada com sucesso';
+                mensagemSucesso.style.display = 'block'; // Exibe a mensagem de sucesso
+                mensagemSucesso.style.color = 'green';
+                mensagemSucesso.style.marginTop = '10px';
+                formAjuda.reset(); // Limpa o formulário após o envio
+            }, function(error) {
+                console.log('Erro ao enviar a mensagem', error);
+                mensagemSucesso.textContent = 'Ocorreu um erro ao enviar a mensagem';
+                mensagemSucesso.style.display = 'block';
+                mensagemSucesso.style.color = 'red';
+            });
+    }
 });

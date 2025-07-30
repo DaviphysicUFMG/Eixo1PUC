@@ -34,19 +34,72 @@
             <a href="x" style="--i: 3">Meu Perfil</a>
             <a href="x" style="--i: 4">Ajuda</a>
             <a href="x" style="--i: 5">Login</a>
+            <a href="cadastro.html" style="--i: 6">Cadastro</a>
         </nav>
     </header>
-    <div class="container">
+    <!-- Busca -->
+    <main class="container mt-4">
         <h1 class="display-4 fw-bold">Descubra a verdade</br>por trás dos rótulos</h1>
-        <a href="produtos.html" class="btn btn-pesquisa mt-4">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
-                viewBox="0 0 16 16">
-                <path
-                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-            </svg> Comece aqui!
-        </a>
-    </div>
+        <div class="input-group mb-3">
+            <input type="text" id="searchInput" class="form-control" placeholder="Digite o nome do produto" />
+            <button class="btn btn-primary" id="searchButton">Buscar</button>
+        </div>
 
+        <div id="results" class="mt-4">
+            <p>Digite o nome de um produto e clique em buscar.</p>
+        </div>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="rodape mt-5">
+        <p>Copyright &#169 2024 Rótulo Fácil | Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        document.getElementById("searchButton").addEventListener("click", () => {
+            const query = document.getElementById("searchInput").value.trim().toLowerCase();
+            const resultsContainer = document.getElementById("results");
+
+            // Limpa resultados anteriores
+            resultsContainer.innerHTML = "";
+
+            // Recupera produtos do LocalStorage
+            const products = JSON.parse(localStorage.getItem("products")) || [];
+
+            // Filtra os produtos pelo nome
+            const filteredProducts = products.filter(product => product.name.toLowerCase().includes(query));
+
+            // Verifica se há resultados
+            if (filteredProducts.length === 0) {
+                resultsContainer.innerHTML = "<p>Nenhum produto encontrado.</p>";
+                return;
+            }
+
+            // Renderiza resultados
+            filteredProducts.forEach(product => {
+                const productCard = `
+              <div class="card mb-3" style="width: 100%;">
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    <img src="${product.image}" class="img-fluid rounded-start" alt="${product.name}">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title">${product.name}</h5>
+                      <p class="card-text">${product.description}</p>
+                      <h6>Ingredientes:</h6>
+                      <ul>
+                        ${product.ingredients.map(ingredient => `<li>${ingredient}</li>`).join("")}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `;
+                resultsContainer.innerHTML += productCard;
+            });
+        });
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"></script>
@@ -54,9 +107,6 @@
     <footer class="rodape">
         <p>Copyright &#169 2024 Rótulo Fácil | Todos os direitos reservados.</p>
     </footer>
-</body>
-
-</html>
 </body>
 
 </html>

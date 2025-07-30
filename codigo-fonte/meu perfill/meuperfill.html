@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meu Perfil</title>
+  <style>
+    /* Estilos gerais */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #ffffff; /* Fundo branco */
+      color: #333333;
+    }
+
+    /* Cabeçalho */
+    header {
+      background-color: #003366; /* Azul escuro */
+      color: white;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      font-size: 24px;
+      margin: 0;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* Área do perfil */
+    .perfil-container {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .foto-perfil {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background-color: #ccc;
+      display: inline-block;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .foto-perfil:hover::after {
+      content: "Alterar foto de perfil";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 12px;
+    }
+
+    .foto-perfil input[type="file"] {
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+    }
+
+    .nome-usuario {
+      font-size: 18px;
+      margin-top: 10px;
+      color: #003366;
+    }
+
+    .galeria-container {
+      max-width: 800px;
+      margin: 30px auto;
+    }
+
+    .post {
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      position: relative;
+    }
+
+    .post button.excluir {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #ff4d4d;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .post button.excluir:hover {
+      background-color: #cc0000;
+    }
+  </style>
+  <link rel="stylesheet" href="meuperfill.css">
+</head>
+<body>
+  <!-- Cabeçalho -->
+  <header>
+    <h1>Meu Perfil</h1>
+    <nav>
+      <a href="#">Perfil</a>
+      <a href="#">Favoritos</a>
+      <a href="#">Ingredientes</a>
+      <a href="#">Produtos</a>
+      
+
+    </nav>
+  </header>
+
+  <div class="perfil-container">
+    <!-- Área da foto de perfil -->
+    <div class="foto-perfil" onclick="document.getElementById('input-foto').click()">
+      <input type="file" id="input-foto" accept="image/*" onchange="trocarFotoPerfil(event)" style="display: none;">
+    </div>
+    <!-- Nome do usuário -->
+    <p class="nome-usuario">
+      Nome do Usuário 
+      <!-- Botão para alterar foto -->
+      <span class="alterar-foto" onclick="document.getElementById('input-foto').click()">Alterar foto de perfil</span>
+    </p>
+  </div>
+  
+
+  <!-- Galeria -->
+  <div class="galeria-container">
+    <!-- Formulário para criar post -->
+    <div class="post">
+      <textarea id="mensagem" placeholder="Escreva algo..." rows="3" style="width: 100%;"></textarea>
+      <input type="file" id="imagem-post" accept="image/*">
+      <button onclick="criarPost()">Publicar</button>
+    </div>
+    <!-- Lista de posts -->
+    <div id="posts"></div>
+  </div>
+
+  <script>
+    // Trocar a foto de perfil
+    function trocarFotoPerfil(event) {
+      const foto = document.querySelector('.foto-perfil');
+      const arquivo = event.target.files[0];
+      if (arquivo) {
+        const leitor = new FileReader();
+        leitor.onload = function (e) {
+          foto.style.backgroundImage = `url(${e.target.result})`;
+          foto.style.backgroundSize = 'cover';
+        };
+        leitor.readAsDataURL(arquivo);
+      }
+    }
+
+    // Criar um post
+    function criarPost() {
+      const mensagem = document.getElementById('mensagem').value;
+      const imagem = document.getElementById('imagem-post').files[0];
+      const postsContainer = document.getElementById('posts');
+
+      const postDiv = document.createElement('div');
+      postDiv.classList.add('post');
+
+      // Botão de excluir
+      const excluirBtn = document.createElement('button');
+      excluirBtn.classList.add('excluir');
+      excluirBtn.textContent = 'Excluir';
+      excluirBtn.onclick = () => postDiv.remove();
+
+      postDiv.appendChild(excluirBtn);
+
+      if (imagem) {
+        const img = document.createElement('img');
+        img.src = URL.createObjectURL(imagem);
+        img.style.maxWidth = '100%';
+        img.style.borderRadius = '8px';
+        postDiv.appendChild(img);
+      }
+
+      if (mensagem) {
+        const p = document.createElement('p');
+        p.textContent = mensagem;
+        postDiv.appendChild(p);
+      }
+
+      postsContainer.prepend(postDiv); // Adiciona no topo
+      document.getElementById('mensagem').value = '';
+      document.getElementById('imagem-post').value = '';
+    }
+  </script>
+  <button id="modo-escuro" onclick="alternarModoEscuro()">Modo Escuro</button>
+  <footer class="rodape">
+    <p>Copyright &#169 2024 Rótulo Fácil | Todos os direitos reservados.</p>
+</footer>
+
+  <script src="meuperfill.js"></script>
+</body>
+</html>
+

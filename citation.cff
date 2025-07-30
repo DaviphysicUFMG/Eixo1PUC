@@ -1,29 +1,25 @@
-message: Please cite this software using these metadata.
-title:
+cff-version: 1.0.1
+message: Sistema de cadastro de produtos e especificação de ingredientes
+title: Rótulo Fácil
 authors:
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
+  - family-names: Pedro da Silva
+    given-names: Andryws
+  - family-names: Bicalho da Silva
+    given-names: Davi 
+  - family-names: Dias Santos 
+    given-names: Louise
+  - family-names: Takamatsu 
+  given-names: Marcos 
   - name-suffix: Professor
     affiliation: PUC Minas
-    family-names: 
-    given-names: 
-  - name-suffix: Professor
-    affiliation: PUC Minas
-    family-names: 
-    given-names: 
+    family-names: Nepomuceno Curto
+    given-names: Hayala
 keywords:
-  - 
-  - 
-repository-code: 
+  - produtos
+  - cospéticos
+  - ingredientes
+  - rótulo
+repository-code: https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-2-e1-proj-web-t9-g3-rotulo-facil-1
+license: CC-BY-4.0
 version: 1.0.0
-date-released: 2023-10-31
+date-released: 2024-12-08

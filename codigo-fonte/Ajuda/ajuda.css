@@ -185,3 +185,15 @@ button[type="submit"]:hover {
   margin-bottom: 10px;
   padding-right: 100%;
 }
+
+.ajuda-container {
+  padding: 10px;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+}
+
+#mensagem-sucesso {
+  color: green;
+  font-weight: bold;
+  margin-top: 10px;
+}
