@@ -1,0 +1,119 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+  
+  body {
+    background-color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #333;
+  }
+  
+  .cabecalho {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: #fff;
+  }
+  
+  .logo-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo {
+    height: 40px;
+  }
+  
+  .logo-container span {
+    color: #4E2599;
+    font-size: 18px;
+    margin-left: 5px;
+  }
+  
+  .navigation a {
+    margin: 0 15px;
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .navigation .perfil-ativo {
+    color: #4E2599;
+    font-weight: bold;
+  }
+  
+  .login-button {
+    background-color: #333;
+    color: #fff;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .perfil-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: calc(100vh - 180px);
+    background-color: #333;
+  }
+  
+  .perfil-card {
+    background-color: #fff;
+    padding: 30px;
+    width: 300px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .perfil-foto {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+  }
+  
+  .perfil-card h2 {
+    font-size: 22px;
+    color: #333;
+  }
+  
+  .perfil-card p {
+    font-size: 14px;
+    color: #777;
+    margin: 5px 0 20px;
+  }
+  
+  .editar-button {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .editar-button:hover {
+    background-color: #4E2599;
+  }
+  
+  .rodape {
+    width: 100%;
+    padding: 15px;
+    background-color: #4E2599;
+    color: #fff;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+  }
+  

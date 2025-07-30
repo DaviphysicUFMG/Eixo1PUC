@@ -1,0 +1,131 @@
+/*
+ * Custom CSS
+ */
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+:root {
+  --bs-body-bg: var(--bs-gray-100);
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  background-image: url("../cosm00.jpeg"); /* Define a imagem de fundo */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+body {
+  background-color: #1e1e1e;
+}
+
+/* main {
+  background-color: rgba(120, 116, 116, 0.4);
+  margin-top: auto;
+  margin-left: 30%;
+  margin-right: 30%;
+  border-radius: 10px;
+  margin-bottom: auto;
+} */
+
+.menuHome {
+  background-color: #ffff;
+}
+
+.logoImg {
+  margin-left: 0;
+  margin-right: 10rem !important;
+}
+
+.nav-link {
+  color: #2c2c2c !important; /* Cor personalizada para o texto dos links */
+  /* font-size: 1.5rem; */
+}
+
+.nav-link:hover {
+  color: #6d6d6d !important; /* Cor personalizada quando o link é "hovered" */
+}
+
+.custom-btn {
+  background-color: #404040; /* Cor de fundo personalizada */
+  border-color: #404040; /* Cor da borda personalizada */
+  color: white; /* Cor do texto */
+  font-size: 1.5rem;
+}
+
+.custom-btn:hover {
+  background-color: #e1e1e1; /* Cor de fundo no hover */
+  border-color: #e1e1e1; /* Cor da borda no hover */
+  color: #404040;
+  font-size: 1.5rem;
+}
+
+.left-cont {
+  background-color: aliceblue;
+}
+.image-container {
+  height: 100%; /* Ocupa toda a altura da coluna */
+  overflow: hidden; /* Esconde partes da imagem que excedem o contêiner */
+}
+
+.image-container img {
+  width: 100%; /* Largura 100% do contêiner */
+  height: 100%; /* Altura 100% do contêiner */
+  object-fit: cover; /* Mantém a proporção da imagem */
+}
+
+form {
+  width: 30%;
+  background-color: rgba(225, 225, 225, 0.8);
+  padding: 50px;
+  border-radius: 20px;
+  margin-top: 150px;
+  margin-bottom: 15%;
+}
+
+.btn-primary {
+  width: 100%;
+  border: none;
+  background-color: #404040;
+}
+
+.btn-primary:hover {
+  background-color: #e1e1e1;
+  color: #404040;
+}
+
+.form-control {
+  color: rgba(0, 0, 0, 0.87);
+  border-bottom-color: rgba(0, 0, 0, 0.42);
+  box-shadow: none !important;
+  border: none;
+  border-bottom: 1px solid;
+  border-radius: 4px 4px 00;
+}
+
+h4 {
+  font-size: 3rem !important;
+  font-weight: 700;
+  color: #1e1e1e;
+}
+
+.font-label {
+  font-family: 800;
+}
+
+@media only screen and (max-width: 600px) {
+  form {
+    width: 100% !important;
+  }
+}

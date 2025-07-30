@@ -1,0 +1,167 @@
+@layer base {
+    :root {
+      --background: hsl(0 0% 96.08%);
+      --foreground: hsl(0 0% 0%);
+      --card: hsl(0, 0%, 95%);
+      --card-foreground: hsl(215 27.91% 16.86%);
+      --popover: hsl(0 0% 100%);
+      --popover-foreground: hsl(0 0% 18.82%);
+      --primary: hsl(253.57 100% 22.55%);
+      --primary-foreground: hsl(0 0% 100%);
+      --secondary: hsl(174.55 5.7% 62.16%);
+      --secondary-foreground: hsl(0 0% 100%);
+      --muted: hsl(0 0% 88.24%);
+      --muted-foreground: hsl(0 0% 25.1%);
+      --accent: hsl(0 0% 94.51%);
+      --accent-foreground: hsl(0 0% 0%);
+      --destructive: hsl(0 100% 31.76%);
+      --destructive-foreground: hsl(0 0% 98.04%);
+      --border: hsl(0 0% 87.06%);
+      --input: hsl(240 5.88% 90%);
+      --ring: hsl(177.78 28.42% 18.63%);
+      --radius: 6rem;
+    }
+  }
+body {
+    background-color: var(--card-foreground);
+}
+
+main {
+    display: flex;
+    justify-content: center;
+}
+.container {
+  background-color: white;
+  max-width: 2000px;
+  width: 90%;
+  margin: 200px auto;
+  padding: 20px;
+  border-radius:10px;
+  box-shadow: 0 0 10px var(--ring);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 600px;  
+}
+.teste {
+   background-color: white;
+   border-radius:10px 10px 10px 10px;
+    margin-bottom: 20px;
+  
+}
+.teste h2 {
+  color: gray;
+  font-size: 16px;
+}
+.rodape {
+    background-color: var(--card-foreground);
+    color: var(--card);
+    text-align: center;
+    padding: 15px 0;
+    font-size: 14px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+  }
+  
+  .rodape p {
+    margin: 0;
+  }
+  .produto-container {
+    border: 1px solid #ccc;  /* Borda ao redor do produto */
+    margin: 10px;            /* Espaçamento entre os produtos */
+    padding: 10px;           /* Espaçamento interno */
+    text-align: center;      /* Centraliza o texto */
+    width: 150px;            /* Define uma largura fixa */
+    border-radius: 8px;      /* Bordas arredondadas */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra suave */
+  }
+ .produto-container:hover {
+    background-color: #f5f5f5; /* Cor de fundo ao passar o mouse */
+  }
+
+ .produto-container img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: cover; /* Ajusta o aspecto do imagem */
+  
+  }
+
+
+}
+.desfavoritar-btn {
+  color: #f5f5f5;
+  border: none;
+  padding:2px 3px;
+  border-radius: 5px;
+  cursor: pointer;
+
+}
+
+.desfavoritar-btn:hover {
+  color: #333;
+  background-color: #f5f5f5;
+}
+
+.produtos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 10px;
+  margin-top: 20px;
+  padding: 10px;
+}
+
+@media (max-width: 768px) {
+  .produto-container {
+      flex: 1 1 calc(% - 5px); /* 2 produtos por linha em telas menores */
+  }
+}
+
+@media (max-width: 480px) {
+  .produto-container {
+      flex: 1 1 100%; /* 1 produto por linha em telas muito pequenas */
+  }
+  .produtos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 10px;
+    margin-top: 20px;
+    padding: 10px;
+  }
+  
+  .produto-container {
+    border: 1px solid #ccc; 
+    margin: 10px;            
+    padding: 10px;           
+    text-align: center;      
+    width: 150px;            
+    border-radius: 8px;      
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+  }
+  
+  /* Media Query para telas menores */
+  @media (max-width: 768px) {
+    .produto-container {
+      flex: 1 1 calc(50% - 10px); /* 2 produtos por linha em telas menores */
+      width: auto; /* Ajusta a largura automaticamente */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .produto-container {
+      flex: 1 1 100%; /* 1 produto por linha em telas muito pequenas */
+      width: auto; /* Ajusta a largura automaticamente */
+
+      .produto-container {
+        transition: opacity 0.3s ease;
+    }
+    
+    .produto-container.remover {
+        opacity: 0; /* Aplicar a classe 'remover' ao remover o produto */
+    }
+    

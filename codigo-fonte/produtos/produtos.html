@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <title>Rótulo Fácil</title>
+
+  <link rel="stylesheet" href="produtos.css" />
+  <link rel="stylesheet" href="../menu/global.css" />
+  <link rel="stylesheet" href="../menu/nav.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+
+  <!-- icones -->
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+</head>
+
+<body>
+  <!-- Menu -->
+  <header class="cabecalho">
+    <a href=""><img src="../img/Logo1.svg" alt="Rótulo Fácil" class="logo" /></a>
+    <input type="checkbox" id="check" />
+    <label for="check" class="icons">
+      <i class="bx bx-menu" id="menu_icon"></i>
+      <i class="bx bx-x" id="close_icon"></i>
+    </label>
+    <nav class="navigation">
+      <a href="x" style="--i: 0">Produtos</a>
+      <a href="../favoritos/index.html" style="--i: 1">Favoritos</a>
+      <a href="x" style="--i: 2">Ingredientes</a>
+      <a href="x" style="--i: 3">Meu Perfil</a>
+      <a href="x" style="--i: 4">Ajuda</a>
+      <a href="x" style="--i: 5">Login</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <div class="card_produtos">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Nome_Produto_1" aria-label="Nome_Produto"
+          aria-describedby="button-addon2">
+        <button class="btn btn-outline-secondary" type="button" id="button-addon2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
+            viewBox="0 0 16 16">
+            <path
+              d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+          </svg>
+        </button>
+      </div>
+      <div class="display_produto">
+        <div><img src="img/produto_1.png" alt="Produto_1"></br>
+        </div>
+        <div>
+          <div class="titulo_produtos">
+            <h1>Nome_Produto_1</h1>
+            <!-- botão favoritos -->
+            <div class="heart-container" title="Like">
+              <input type="checkbox" class="checkbox" id="Give-It-An-Id">
+              <div class="svg-container">
+                <svg viewBox="0 0 24 24" class="svg-outline" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Zm-3.585,18.4a2.973,2.973,0,0,1-3.83,0C4.947,16.006,2,11.87,2,8.967a4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,11,8.967a1,1,0,0,0,2,0,4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,22,8.967C22,11.87,19.053,16.006,13.915,20.313Z">
+                  </path>
+                </svg>
+                <svg viewBox="0 0 24 24" class="svg-filled" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Z">
+                  </path>
+                </svg>
+                <svg class="svg-celebrate" width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+                  <polygon points="10,10 20,20"></polygon>
+                  <polygon points="10,50 20,50"></polygon>
+                  <polygon points="20,80 30,70"></polygon>
+                  <polygon points="90,10 80,20"></polygon>
+                  <polygon points="90,50 80,50"></polygon>
+                  <polygon points="80,80 70,70"></polygon>
+                </svg>
+              </div>
+            </div>
+            <!-- Script Favoritar -->
+            <script>
+              document.addEventListener('DOMContentLoaded', (event) => {
+                  const checkbox = document.getElementById('Give-It-An-Id');
+      
+                  // Restaurar o estado do checkbox do local storage
+                  const isChecked = localStorage.getItem('checkboxState') === 'true';
+                  checkbox.checked = isChecked;
+      
+                  // Salvar o estado do checkbox no local storage quando ele for clicado
+                  checkbox.addEventListener('change', () => {
+                      localStorage.setItem('checkboxState', checkbox.checked);
+                  });
+              });
+          </script>
+          </div>
+
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus congue elit at urna molestie vehicula.
+            Aenean nulla magna, lobortis quis urna et, pellentesque tempor urna. Maecenas magna nibh, molestie sed metus
+            non, euismod vulputate augue. Pellentesque lobortis massa fermentum, pellentesque orci nec, tincidunt felis.
+            Ut aliquam erat eget scelerisque placerat. Donec rutrum lacus eget odio laoreet, ut euismod ante
+            scelerisque. Sed vel arcu a massa aliquet aliquam. Phasellus sed rutrum mi.</p>
+        </div>
+      </div>
+      <div>
+        <h2>Ingredientes_Produto_1</h2></br>
+        <ul>
+          <li>
+            <strong>Ingrediente_1:</strong> Descrição Ingrediente_1
+          </li>
+          <li>
+            <strong>Ingrediente_2:</strong> Descrição Ingrediente_2
+          </li>
+          <li>
+            <strong>Ingrediente_3:</strong> Descrição Ingrediente_3
+          </li>
+          <li>
+            <strong>Ingrediente_4:</strong> Descrição Ingrediente_4
+          </li>
+          <li>
+            <strong>Ingrediente_5:</strong> Descrição Ingrediente_5
+          </li>
+        </ul>
+      </div>
+    </div>
+  </main>
+
+  <footer class="rodape">
+    <p>Copyright &#169 2024 Rótulo Fácil | Todos os direitos reservados.</p>
+  </footer>
+</body>
+
+</html>

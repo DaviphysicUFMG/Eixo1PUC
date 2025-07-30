@@ -1,0 +1,151 @@
+/* Selecione o código ou posicione o cursor no documento onde você quer realizar a substituição.
+Abra a caixa de busca e substituição:
+    Pressione Ctrl + H (Windows/Linux) ou Cmd + H (macOS).
+Ative expressões regulares:
+    Clique no ícone .* (ou use Alt + R) para ativar o modo de expressões regulares.
+No campo de busca, cole o seguinte padrão:
+
+(\d+(\.\d+)?\s+\d+(\.\d+)?%\s+\d+(\.\d+)?%)
+
+Isso captura qualquer valor HSL no formato h s% l%, incluindo decimais.
+No campo de substituição, cole o seguinte:
+
+hsl($1)
+
+Clique em Substituir tudo (Replace All). 
+*/
+
+@layer base {
+  :root {
+    --background: hsl(0 0% 96.08%);
+    --foreground: hsl(0 0% 0%);
+    --card: hsl(0, 0%, 95%);
+    --card-foreground: hsl(215 27.91% 16.86%);
+    --popover: hsl(0 0% 100%);
+    --popover-foreground: hsl(0 0% 18.82%);
+    --primary: hsl(253.57 100% 22.55%);
+    --primary-foreground: hsl(0 0% 100%);
+    --secondary: hsl(174.55 5.7% 62.16%);
+    --secondary-foreground: hsl(0 0% 100%);
+    --muted: hsl(0 0% 88.24%);
+    --muted-foreground: hsl(0 0% 25.1%);
+    --accent: hsl(0 0% 94.51%);
+    --accent-foreground: hsl(0 0% 0%);
+    --destructive: hsl(0 100% 31.76%);
+    --destructive-foreground: hsl(0 0% 98.04%);
+    --border: hsl(0 0% 87.06%);
+    --input: hsl(240 5.88% 90%);
+    --ring: hsl(177.78 28.42% 18.63%);
+    --radius: 6rem;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+/* Estilo do botão de Login */
+.buttonLogin a {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  border-radius: var(--radius);
+  padding: 10px 20px;
+  border: 2px solid var(--border);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.buttonLogin a:hover {
+  background-color: var(--primary-foreground);
+  color: var(--primary);
+}
+
+main {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 100vh;
+}
+
+.leftSection,
+.rightSection {
+  flex: 1;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.leftSection {
+  background-color: #f0f0f0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Estilos para a imagem ocupar toda a seção */
+.leftSection img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.5;
+}
+
+.rightSection {
+  background-color: #e0e0e0;
+}
+
+.rodape {
+  background-color: var(--card-foreground);
+  color: var(--card);
+  text-align: center;
+  padding: 15px 0;
+  font-size: 14px;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
+
+.rodape p {
+  margin: 0;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .logo img {
+    max-width: 80%;
+    margin-bottom: 10px;
+  }
+
+  nav {
+    /* width: 30%; */
+    padding: auto;
+    justify-content: flex-end;
+    transition: background-color 0.9s ease, color 0.9s ease;
+  }
+
+  nav ul {
+    flex-direction: column;
+    /* align-items: flex-end; */
+    width: 100%;
+    padding: auto;
+    margin: 0px;
+    margin-bottom: 20px;
+    align-items: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  nav ul li {
+    margin: 10px 0;
+    width: auto;
+    text-align: center;
+  }
+}

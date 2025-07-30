@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Rótulo Fácil</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="favoritos.css" />
+    <link rel="stylesheet" href="../menu/global.css" />
+    <link rel="stylesheet" href="../menu/nav.css" />
+
+    <!-- Ícones -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    
+    <!-- JS -->
+    <script src="favoritos.js"></script>
+  </head>
+  
+  <body>
+    <!-- Menu -->
+    <header class="cabecalho">
+      <a href="../home/index.html">
+        <img src="../img/Logo1.svg" alt="Rótulo Fácil" class="logo" />
+      </a>
+      <input type="checkbox" id="check" />
+      <label for="check" class="icons">
+        <i class="bx bx-menu" id="menu_icon"></i>
+        <i class="bx bx-x" id="close_icon"></i>
+      </label>
+      <nav class="navigation">
+        <a href="../produtos/busca_produtos.html" style="--i: 0">Produtos</a>
+        <a href="../ingredientes/ingredientes.html" style="--i: 2">Ingredientes</a>
+        <a href="../perfil/perfil.html" style="--i: 3">Meu Perfil</a>
+        <a href="../Ajuda/ajuda.html" style="--i: 4">Ajuda</a>
+        <a href="../login/login.html" style="--i: 5">login</a>
+        <a href="../favoritos/favoritos.html" style="--i: 6">favoritos</a>
+      </nav>
+    </header>
+    <main>
+        <section class="container"> 
+          <div class="teste">
+            <h1>Meus Produtos</h1>
+            <h2>Favoritos</h2>
+          </div>
+            <div class="produtos">
+              <div class="produto-container" data-id="1">
+                <img src="https://via.placeholder.com/150?text=Produto+1" alt="Nome do Produto 1" class="produto-imagem">
+                <h3>Nome do Produto 1</h3>
+                <p class="produto-descricao">Descrição do Produto 1</p>
+                <button class="desfavoritar-btn">Desfavoritar</button>
+            </div>
+            <div class="produto-container" data-id="2">
+              <img src="https://via.placeholder.com/150?text=Produto+2" alt="Nome do Produto 2" class="produto-imagem">
+                <h3>Nome do Produto 2</h3>
+                <p class="produto-descricao">Descrição do Produto 2</p>
+                <button class="desfavoritar-btn">Desfavoritar</button>
+            </div>
+            <div class="produto-container" data-id="3">
+              <img src="https://via.placeholder.com/150?text=Produto+3" alt="Nome do Produto 3" class="produto-imagem">
+                <h3>Nome do Produto 3</h3>
+                <p class="produto-descricao">Descrição do Produto 3</p>
+                <button class="desfavoritar-btn">Desfavoritar</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="rodape">
+      <p>Copyright &#169 2024 Rótulo Fácil | Todos os direitos reservados.</p>
+    </footer>
+  </body>
+</html>

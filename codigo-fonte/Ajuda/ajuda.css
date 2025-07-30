@@ -1,0 +1,187 @@
+@layer base {
+  :root {
+    --background: hsl(0 0% 96.08%);
+    --foreground: hsl(0 0% 0%);
+    --card: hsl(0, 0%, 95%);
+    --card-foreground: hsl(215 27.91% 16.86%);
+    --popover: hsl(0 0% 100%);
+    --popover-foreground: hsl(0 0% 18.82%);
+    --primary: hsl(253.57 100% 22.55%);
+    --primary-foreground: hsl(0 0% 100%);
+    --secondary: hsl(174.55 5.7% 62.16%);
+    --secondary-foreground: hsl(0 0% 100%);
+    --muted: hsl(0 0% 88.24%);
+    --muted-foreground: hsl(0 0% 25.1%);
+    --accent: hsl(0 0% 94.51%);
+    --accent-foreground: hsl(0 0% 0%);
+    --destructive: hsl(0 100% 31.76%);
+    --destructive-foreground: hsl(0 0% 98.04%);
+    --border: hsl(0 0% 87.06%);
+    --input: hsl(240 5.88% 90%);
+    --ring: hsl(177.78 28.42% 18.63%);
+    --radius: 6rem;
+  }
+}
+
+body {
+  background-color: var(--card-foreground);
+  margin: 0;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  max-width: 450px;
+  margin: 300px auto;
+  color: rgb(0, 0, 0);
+  padding: 40px 20px;
+  width: 100%;
+  padding-left: auto;
+  padding-right: auto; /* Corrigido aqui */
+  border-radius: 10px;
+  box-shadow: 10px 5px 10px rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  transition: transform 0.5s ease;
+  transform: translateY(0);
+  opacity: 1;
+  animation: fade-in 1s ease;
+  animation-delay: 1s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+  animation-play-state: running;
+}
+
+.ajuda-container .titulo-ajuda {
+  font-size: 24px;
+  margin-top: -25px;
+  margin-bottom: 15px;
+  font-weight: bold;
+  text-align: center;
+  transition: color 0.3s ease;
+  color: var(--primary);
+  cursor: pointer;
+}
+
+.ajuda-container .titulo-ajuda:hover {
+  color: var(--secondary);
+}
+
+.container-field {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  padding: 5px;
+  margin: 10px 0;
+  box-shadow: 0 5px 2px rgba(0, 0, 0, 0.1);
+  outline-color: rgb(136, 150, 144);
+}
+
+.container-field input,
+.container-field textarea {
+  border: none;
+  width: 100%;
+}
+
+.container-field textarea {
+  padding: 10px 50px;
+  border-radius: 5px;
+  background-color: transparent;
+  outline-color: rgb(181, 187, 179);
+}
+
+button[type="submit"] {
+  background-color: hsl(252, 12%, 43%);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+  background-color: hsl(254, 52%, 35%);
+}
+
+.resetar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.resetar label {
+  margin-left: 5px;
+}
+
+.resetar {
+  font-size: 12px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+#mensagem-sucesso {
+    font-size: 16px; /* Tamanho da fonte */
+    font-weight: bold; /* Negrito */
+    color: green; /* Cor da mensagem */
+    margin-top: 10px; /* Margem acima */
+.rodape {
+  background-color: var(--card-foreground);
+  color: var(--card);
+  text-align: center;
+  padding: 15px 0;
+  font-size: 14px;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
+
+.rodape p {
+  margin: 0;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+}
+
+@keyframes slide-in {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.nome-usuario, .email, .mensagem {
+  font-size: 15px;
+  margin-bottom: 10px;
+  padding-right: 100%;
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Produto</title>
+    <link rel="stylesheet" href="cadastro.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Cadastro de Produto</h1>
+        <form id="productForm">
+            <label for="productName">Nome do Produto:</label>
+            <input type="text" id="productName" name="productName" required>
+
+            <label for="productImage">Imagem do Produto:</label>
+            <input type="file" id="productImage" name="productImage" accept="image/*" required>
+
+            <label for="productDescription">Descrição do Produto:</label>
+            <textarea id="productDescription" name="productDescription" required></textarea>
+
+            <label for="productIngredients">Ingredientes:</label>
+            <div id="ingredientsContainer">
+                <input type="text" name="ingredients[]" required>
+            </div>
+            <button type="button" id="addIngredient">Adicionar Ingrediente</button>
+
+            <button type="submit">Cadastrar Produto</button>
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+body {
+    background-image: url('sua-imagem-de-fundo.jpg'); /* Substitua pelo caminho da sua imagem */
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #333; /* Cor do texto - ajuste conforme necessário */
+}
+.container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.btn-pesquisa {
+    background-color: transparent;
+    border: 2px solid #333; /* Cor da borda do botão - ajuste conforme necessário */
+    color: #333; /* Cor do texto do botão - ajuste conforme necessário */
+}
